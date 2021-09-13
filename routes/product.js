@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Product = require('../models/Product')
 const queryString = require('query-string')
 
-router.get("/product/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id)
         res.status(200).json(product)
@@ -66,9 +66,6 @@ router.get("/", async (req, res) => {
             res.status(200).jsonp(result)
         }
         // console.log(queryParam);
-
-
-
 
     } catch (error) {
         res.status(500).jsonp(error)
