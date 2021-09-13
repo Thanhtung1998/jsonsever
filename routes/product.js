@@ -25,24 +25,41 @@ router.get("/", async (req, res) => {
     try {
 
         const queryParam = queryString.parse(req._parsedUrl.query)
+
+        console.log(queryParam)
+
+
         // console.log(queryParam);
+        if (!queryParam._limit || !queryParam._page) {
 
-        const _skip = (queryParam._page - 1) * queryParam._limit
+            const productAll = await Product.find();
 
-        const productLength = await Product.find();
-
-        const product = await Product.find().limit(Number(queryParam._limit)).skip(_skip).exec()
-
-
-        const result = {
-            product: product,
-            pagination: {
-                _page: Number.parseInt(queryParam._page) || 1,
-                _limit: Number.parseInt(queryParam._limit) || 10,
-                _totalRow: Number.parseInt(productLength.length),
+            const resultAll = {
+                product: productAll,
             }
+
+            res.status(500).jsonp(resultAll)
+
         }
-        res.status(200).jsonp(result);
+        else {
+            res.status(200).jsonp(resultAll);
+            const _skip = (queryParam._page - 1) * queryParam._limit || 10
+            const _limit = Number.parseInt(queryParam._limit) || 10
+            const productLength = await Product.find();
+
+            const product = await Product.find().limit(_limit).skip(_skip).exec()
+
+
+            const result = {
+                product: product,
+                pagination: {
+                    _page: Number.parseInt(queryParam._page) || 1,
+                    _limit: _limit,
+                    _totalRow: Number.parseInt(productLength.length),
+                }
+            }
+            res.status(200).jsonp(result);
+        }
 
     } catch (error) {
         res.status(500).jsonp(error)
