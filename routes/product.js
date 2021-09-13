@@ -37,8 +37,8 @@ router.get("/", async (req, res) => {
         const result = {
             product: product,
             pagination: {
-                _page: queryParam._page || 1,
-                _limit: queryParam._limit || 10,
+                _page: Number.parseInt(queryParam._page) || 1,
+                _limit: Number.parseInt(queryParam._limit) || 10,
                 _totalRow: Number.parseInt(productLength.length),
             }
         }
