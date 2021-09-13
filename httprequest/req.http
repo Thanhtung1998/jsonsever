@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:5000/api
+
+# @name GetProduct
+
+GET {{baseUrl}}/products/
+
+###
+
+# @name GetPagination
+
+GET {{baseUrl}}/products?_page=1&_limit=10
