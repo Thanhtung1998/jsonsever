@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Product = require('../models/Product')
 const queryString = require('query-string')
 
-router.get("/:id", async (req, res) => {
+router.get("/product/:id", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id)
         res.status(200).json(product)
@@ -11,7 +11,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.get("/AllProduct", async (req, res) => {
+router.get("/allproducts", async (req, res) => {
     try {
         const product = await Product.find()
         res.status(200).json(product)
