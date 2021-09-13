@@ -43,11 +43,13 @@ router.get("/", async (req, res) => {
 
 
             const result = {
-                product: product,
-                pagination: {
-                    _page: Number.parseInt(queryParam._page) || 1,
-                    _limit: _limit,
-                    _totalRow: Number.parseInt(productLength.length),
+                data: {
+                    product: product,
+                    pagination: {
+                        _page: Number.parseInt(queryParam._page) || 1,
+                        _limit: _limit,
+                        _totalRow: Number.parseInt(productLength.length),
+                    }
                 }
             }
             res.status(200).jsonp(result);
@@ -56,9 +58,12 @@ router.get("/", async (req, res) => {
             // console.log("No Query Params")
             const product = await Product.find()
             const result = {
-                product: product
+                data: {
+                    product: product,
+                }
+
             }
-            res.status(200).json(result)
+            res.status(200).jsonp(product)
         }
         // console.log(queryParam);
 
