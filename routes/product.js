@@ -63,7 +63,7 @@ router.get("/", async (req, res) => {
                 }
 
             }
-            res.status(200).jsonp(product)
+            res.status(200).jsonp(result)
         }
         // console.log(queryParam);
 
