@@ -35,11 +35,13 @@ router.get("/", async (req, res) => {
 
         if (queryParam._page || queryParam._limit) {
             // console.log(queryParam._page)
-            const _skip = (queryParam._page - 1) * queryParam._limit || 10
+            const _skip = (queryParam._page - 1) * queryParam._limit || 0
             const _limit = Number.parseInt(queryParam._limit) || 10
             const productLength = await Product.find();
 
             const product = await Product.find().limit(_limit).skip(_skip).exec()
+
+            console.log(product.length, _limit, _skip)
 
 
             const result = {
