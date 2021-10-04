@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const productRoute = require("./routes/product");
+const topProductRoute = require("./routes/topProduct")
 const dotenv = require("dotenv");
 const cors = require("cors");
 
@@ -15,7 +16,7 @@ mongoose
         // useUnifiedTopology: true,
         // useCreateIndex: true,
     })
-    .then(() => console.log("DB Connection Successfull"))
+    .then(() => console.log("DB Connection Successful"))
     .catch((err) => {
         console.error(err);
     });
@@ -23,6 +24,7 @@ mongoose
 app.use(express.json());
 
 app.use("/api/products", productRoute);
+app.use("/api/TopProduct", topProductRoute);
 
 const PORT = process.env.PORT || 5000
 
