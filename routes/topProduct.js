@@ -16,7 +16,9 @@ router.get("/", async (req, res) => {
     try {
         const product = await topProduct.find()
         const result = {
-            product: product
+            data: {
+                product: product,
+            }
         }
         res.status(200).json(result)
     } catch (error) {
