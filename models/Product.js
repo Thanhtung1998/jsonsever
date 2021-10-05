@@ -8,8 +8,10 @@ const ProductSchema = new mongoose.Schema({
     NewPrice: { type: Number, required: true },
     ColorProduct: { type: Array, default: [] },
     ImgUrlProduct: { type: Object, default: {} },
-    DetailProduct: { type: Object, default: {} },
+    RateProduct: { type: Object, default: [] },
     QuantityProductAndSize: { type: Array, default: [] },
+    Categories: { type: Array, default: [] },
+    commentId: { type: String, default: [] },
 });
 
 // ------------------Document---------------------------
